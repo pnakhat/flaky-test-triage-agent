@@ -1,0 +1,41 @@
+# Example only: copy to .github/workflows/ in your own repo and adapt.
+# Runs the triage agent whenever the "CI" workflow fails, in dry-run (shadow) mode,
+# and writes the verdicts to the job summary for humans to compare.
+
+name: Triage failed tests
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  triage:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install anthropic
+
+      # Your adapter: download the failed run's JUnit XML, look up per-test history,
+      # the commit diff and environment health, and write one FailureEvent JSON per failure.
+      - name: Build failure events
+        run: python scripts/build_failure_events.py --run-id ${{ github.event.workflow_run.id }} --out failures/
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Triage (shadow mode)
+        run: |
+          python -m triage failures/*.json > triage.txt
+          { echo '## Triage agent verdicts (shadow mode)'; echo '```'; cat triage.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

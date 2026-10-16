@@ -1,0 +1,33 @@
+{
+  "id": "F-105",
+  "test": "search/test_filters.py::test_filter_panel",
+  "sha": "2aa42ab",
+  "error": "TimeoutError: waiting for selector '.filter-panel' exceeded 5000ms",
+  "history": [
+    "pass",
+    "fail",
+    "pass",
+    "pass",
+    "fail",
+    "pass",
+    "pass",
+    "pass",
+    "fail",
+    "pass"
+  ],
+  "reruns_same_sha": [
+    "fail",
+    "fail",
+    "fail"
+  ],
+  "diff_files": [
+    "src/billing/invoice.py"
+  ],
+  "test_file": "tests/search/test_filters.py",
+  "test_imports": [
+    "src/search/filters.py"
+  ],
+  "critical_path": false,
+  "env_healthy": true,
+  "owner": "team-search"
+}

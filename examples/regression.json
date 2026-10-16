@@ -1,0 +1,34 @@
+{
+  "id": "F-101",
+  "test": "checkout/test_voucher.py::test_apply_voucher",
+  "sha": "143b685",
+  "error": "AssertionError: expected total 90.00 but got 100.00",
+  "history": [
+    "pass",
+    "pass",
+    "pass",
+    "pass",
+    "pass",
+    "pass",
+    "pass",
+    "pass",
+    "pass",
+    "pass"
+  ],
+  "reruns_same_sha": [
+    "fail",
+    "fail",
+    "fail"
+  ],
+  "diff_files": [
+    "src/checkout/voucher.py"
+  ],
+  "test_file": "tests/checkout/test_voucher.py",
+  "test_imports": [
+    "src/checkout/voucher.py",
+    "src/checkout/cart.py"
+  ],
+  "critical_path": true,
+  "env_healthy": true,
+  "owner": "team-checkout"
+}

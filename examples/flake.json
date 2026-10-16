@@ -1,0 +1,33 @@
+{
+  "id": "F-102",
+  "test": "search/test_results.py::test_sort_by_price",
+  "sha": "9178912",
+  "error": "TimeoutError: element #results not visible after 2000ms",
+  "history": [
+    "pass",
+    "fail",
+    "pass",
+    "pass",
+    "fail",
+    "pass",
+    "pass",
+    "pass",
+    "fail",
+    "pass"
+  ],
+  "reruns_same_sha": [
+    "fail",
+    "pass",
+    "pass"
+  ],
+  "diff_files": [
+    "src/profile/avatar.py"
+  ],
+  "test_file": "tests/search/test_results.py",
+  "test_imports": [
+    "src/search/sort.py"
+  ],
+  "critical_path": false,
+  "env_healthy": true,
+  "owner": "team-search"
+}
